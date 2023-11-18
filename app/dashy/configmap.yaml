@@ -19,6 +19,11 @@ data:
       #  description: View open issues, or raise a new one
       #  icon: fas fa-bug
       #  url: https://github.com/Lissy93/dashy/issues
+      - name: favor
+        items:
+          - title: Hacker News
+            icon: fab fa-hacker-news
+            url: https://news.ycombinator.com
       - name: Services
         items:
           - title: ArgoCD
