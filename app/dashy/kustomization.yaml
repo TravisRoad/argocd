@@ -1,0 +1,7 @@
+resources:
+  - dashy.yaml
+configMapGenerator:
+  - name: my-dashboard-config
+    namespace: app-dashy
+    files:
+      - conf.yml

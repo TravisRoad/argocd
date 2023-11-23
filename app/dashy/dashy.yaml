@@ -19,14 +19,14 @@ spec:
         app: my-dashboard
     spec:
       containers:
-      - name: my-dashboard
-        image: lissy93/dashy:2.1.1
-        ports:
-        - containerPort: 80
-        volumeMounts:
-        - name: config-volume
-          mountPath: /app/public/conf.yml
-          subPath: conf.yml
+        - name: my-dashboard
+          image: lissy93/dashy:2.1.1
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: config-volume
+              mountPath: /app/public/conf.yml
+              subPath: conf.yml
       volumes:
         - name: config-volume
           configMap:
@@ -64,4 +64,3 @@ spec:
                 name: my-dashboard-service
                 port:
                   number: 80
-
