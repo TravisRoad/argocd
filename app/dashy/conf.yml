@@ -6,6 +6,9 @@ pageInfo:
         - title: Hacker News
           icon: fab fa-hacker-news
           url: https://news.ycombinator.com
+        - title: Hacker News
+          icon: fab fa-hacker-news
+          url: https://news.ycombinator.com
     - name: Services
       items:
         - title: ArgoCD
