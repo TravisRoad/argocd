@@ -1,16 +1,16 @@
 pageInfo:
   title: Travis' Home Lab
-  sections:
-    - name: favor
-      items:
-        - title: Hacker News
-          icon: fab fa-hacker-news
-          url: https://news.ycombinator.com
-    - name: Services
-      items:
-        - title: ArgoCD
-          icon: favicon
-          url: https://argocd.g.me/
-        - title: Rook Ceph
-          icon: favicon
-          url: https://rook.g.me/
+sections:
+  - name: favor
+    items:
+      - title: Hacker News
+        icon: fab fa-hacker-news
+        url: https://news.ycombinator.com
+  - name: Services
+    items:
+      - title: ArgoCD
+        icon: favicon
+        url: https://argocd.g.me/
+      - title: Rook Ceph
+        icon: favicon
+        url: https://rook.g.me/
