@@ -1,0 +1,87 @@
+# 创建命名空间
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: doccano
+---
+# 创建Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: doccano-deployment
+  namespace: doccano
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: doccano
+  template:
+    metadata:
+      labels:
+        app: doccano
+    spec:
+      containers:
+        - name: doccano
+          image: doccano/doccano
+          ports:
+            - containerPort: 8000
+          env:
+            - name: ADMIN_USERNAME
+              value: admin
+            - name: ADMIN_EMAIL
+              value: admin@example.com
+            - name: ADMIN_PASSWORD
+              value: password
+          volumeMounts:
+            - name: doccano-db
+              mountPath: /data
+      volumes:
+        - name: doccano-db
+          persistentVolumeClaim:
+            claimName: doccano-pvc
+---
+# 创建Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: doccano-service
+  namespace: doccano
+spec:
+  selector:
+    app: doccano
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+---
+# 创建Ingress
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: doccano-ingress
+  namespace: doccano
+spec:
+  rules:
+    - host: doccano.g.me
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: doccano-service
+                port:
+                  number: 8000
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: doccano-pvc
+  namespace: doccano
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+
