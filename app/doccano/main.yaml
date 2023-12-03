@@ -52,7 +52,7 @@ spec:
   ports:
     - protocol: TCP
       port: 8000
-      targetPort: 8000
+      targetPort: 80
 ---
 # 创建Ingress
 apiVersion: networking.k8s.io/v1
@@ -71,7 +71,7 @@ spec:
               service:
                 name: doccano-service
                 port:
-                  number: 8000
+                  number: 80
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
