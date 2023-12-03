@@ -14,3 +14,6 @@ sections:
       - title: Rook Ceph
         icon: favicon
         url: https://rook.g.me/
+      - title: doccano
+        icon: fab fa-circle-info
+        url: https://doccano.g.me/
