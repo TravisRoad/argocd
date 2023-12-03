@@ -1,0 +1,82 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dolphin-scheduler
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: dolphin-scheduler-pvc
+  namespace: dolphin-scheduler
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dolphin-scheduler
+  namespace: dolphin-scheduler
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dolphin-scheduler
+  template:
+    metadata:
+      labels:
+        app: dolphin-scheduler
+    spec:
+      containers:
+        - name: dolphin-scheduler
+          image: apache/dolphinscheduler-standalone-server:3.2.0
+          ports:
+            - containerPort: 12345
+              name: web
+            - containerPort: 25333
+              name: rpc
+          volumeMounts:
+            - name: data
+              mountPath: /opt/dolphinscheduler/logs
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: dolphin-scheduler-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dolphin-scheduler
+  namespace: dolphin-scheduler
+spec:
+  selector:
+    app: dolphin-scheduler
+  ports:
+    - protocol: TCP
+      port: 12345
+      targetPort: 12345
+    - protocol: TCP
+      port: 25333
+      targetPort: 25333
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dolphin-scheduler-ingress
+  namespace: dolphin-scheduler
+spec:
+  rules:
+    - host: dolphin.g.me
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: dolphin-scheduler
+                port:
+                  number: 12345
+
