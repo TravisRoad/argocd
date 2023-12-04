@@ -49,7 +49,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: dolphin-scheduler
+  name: dolphin-scheduler-svc
   namespace: dolphin-scheduler
 spec:
   selector:
@@ -76,7 +76,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: dolphin-scheduler
+                name: dolphin-scheduler-svc
                 port:
                   number: 12345
 
