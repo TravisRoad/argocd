@@ -56,10 +56,12 @@ spec:
     app: dolphin-scheduler
   ports:
     - protocol: TCP
+      name: http
       port: 12345
       targetPort: 12345
     - protocol: TCP
       port: 25333
+      name: rpc
       targetPort: 25333
 ---
 apiVersion: networking.k8s.io/v1
