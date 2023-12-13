@@ -54,7 +54,7 @@ metadata:
   namespace: app-dashy
 spec:
   rules:
-    - host: dash.g.me
+    - host: dash.travismtg.com
       http:
         paths:
           - path: /
