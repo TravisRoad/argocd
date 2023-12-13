@@ -10,10 +10,10 @@ sections:
     items:
       - title: ArgoCD
         icon: favicon
-        url: https://argocd.g.me/
+        url: https://argocd.travismtg.com/
       - title: Rook Ceph
         icon: favicon
-        url: https://rook.g.me/
+        url: https://rook.travismtg.com/
       - title: doccano
         icon: fab fa-circle-info
-        url: https://doccano.g.me/
+        url: https://doccano.travismtg.com/
