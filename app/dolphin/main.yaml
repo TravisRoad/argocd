@@ -71,7 +71,7 @@ metadata:
   namespace: dolphin-scheduler
 spec:
   rules:
-    - host: dolphin.g.me
+    - host: dolphin.travismtg.com
       http:
         paths:
           - path: /
